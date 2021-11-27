@@ -70,3 +70,43 @@ test('should update position and direction when placed again', () => {
   expect(toyRobot.position.y).toBe(0);
   expect(toyRobot.direction).toBe(Direction.WEST);
 });
+
+describe('rotate left', () => {
+  test.each([
+    { currentDirection: Direction.NORTH, expectedNewDirection: Direction.WEST },
+    { currentDirection: Direction.WEST, expectedNewDirection: Direction.SOUTH },
+    { currentDirection: Direction.SOUTH, expectedNewDirection: Direction.EAST },
+    { currentDirection: Direction.EAST, expectedNewDirection: Direction.NORTH },
+  ])(
+    'should rotate from $currentDirection to $expectedNewDirection',
+    ({ currentDirection, expectedNewDirection }) => {
+      const toyRobot = createMockToyRobot();
+
+      toyRobot.place(0, 0, currentDirection);
+
+      toyRobot.rotateLeft();
+
+      expect(toyRobot.direction).toBe(expectedNewDirection);
+    }
+  );
+});
+
+describe('rotate right', () => {
+  test.each([
+    { currentDirection: Direction.NORTH, expectedNewDirection: Direction.EAST },
+    { currentDirection: Direction.EAST, expectedNewDirection: Direction.SOUTH },
+    { currentDirection: Direction.SOUTH, expectedNewDirection: Direction.WEST },
+    { currentDirection: Direction.WEST, expectedNewDirection: Direction.NORTH },
+  ])(
+    'should rotate from $currentDirection to $expectedNewDirection',
+    ({ currentDirection, expectedNewDirection }) => {
+      const toyRobot = createMockToyRobot();
+
+      toyRobot.place(0, 0, currentDirection);
+
+      toyRobot.rotateRight();
+
+      expect(toyRobot.direction).toBe(expectedNewDirection);
+    }
+  );
+});

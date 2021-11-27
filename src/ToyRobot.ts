@@ -12,6 +12,20 @@ class Position {
   }
 }
 
+const ROTATE_LEFT_MAPPING: Record<Direction, Direction> = {
+  [Direction.NORTH]: Direction.WEST,
+  [Direction.EAST]: Direction.NORTH,
+  [Direction.SOUTH]: Direction.EAST,
+  [Direction.WEST]: Direction.SOUTH,
+};
+
+const ROTATE_RIGHT_MAPPING: Record<Direction, Direction> = {
+  [Direction.NORTH]: Direction.EAST,
+  [Direction.EAST]: Direction.SOUTH,
+  [Direction.SOUTH]: Direction.WEST,
+  [Direction.WEST]: Direction.NORTH,
+};
+
 export class ToyRobot {
   position: Position;
   direction: Direction;
@@ -40,5 +54,13 @@ export class ToyRobot {
     this.position.y = y;
     this.direction = direction;
     this.hasBeenPlaced = true;
+  }
+
+  rotateLeft(): void {
+    this.direction = ROTATE_LEFT_MAPPING[this.direction];
+  }
+
+  rotateRight(): void {
+    this.direction = ROTATE_RIGHT_MAPPING[this.direction];
   }
 }

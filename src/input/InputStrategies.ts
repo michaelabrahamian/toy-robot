@@ -8,6 +8,12 @@ export const COMMAND_HANDLERS: Record<Command, CommandHandler> = {
   [Command.PLACE]: handlePlaceCommand,
   [Command.REPORT]: () => TOY_ROBOT.report(),
   [Command.MOVE]: () => 'MOVE',
-  [Command.LEFT]: () => 'LEFT',
-  [Command.RIGHT]: () => 'RIGHT',
+  [Command.LEFT]: () => {
+    TOY_ROBOT.rotateLeft();
+    return 'LEFT';
+  },
+  [Command.RIGHT]: () => {
+    TOY_ROBOT.rotateRight();
+    return 'RIGHT';
+  },
 };
