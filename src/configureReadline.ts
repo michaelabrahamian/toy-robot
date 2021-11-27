@@ -6,7 +6,7 @@ export const configureReadline = (readline: ReadlineInterface): void => {
 
   // set input listener
   readline.on('line', (input: string) => {
-    handleInput(input);
+    console.log(handleInput(input));
     readline.prompt();
   });
 

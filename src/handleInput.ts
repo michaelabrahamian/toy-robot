@@ -1,49 +1,60 @@
 import { cleanInput } from './utils/cleanInput';
 import { Command, CommandsWithArgs } from './types/Command';
+import { TOY_ROBOT } from './singleton';
+import { handlePlaceCommand } from './commands/place';
+import { validateCommand } from './validation/validateCommand';
 
-export const handleInput = (input: string): void => {
+export const handleInput = (input: string): string => {
   const parsedInput = cleanInput(input);
 
   const commandAndAnyArgs = parsedInput.split(' ');
   const command = commandAndAnyArgs[0] as Command;
-  const hasArguments = commandAndAnyArgs.length > 1;
 
-  hasArguments
-    ? handleCommandWithArgs(command, commandAndAnyArgs.slice(1))
-    : handleCommandWithoutArgs(command);
+  try {
+    validateCommand(command);
+    const hasArguments = commandAndAnyArgs.length > 1;
+
+    return hasArguments
+      ? handleCommandWithArgs(command, commandAndAnyArgs.slice(1))
+      : handleCommandWithoutArgs(command);
+  } catch (error) {
+    return (error as Error).message;
+  }
 };
 
-const handleCommandWithoutArgs = (command: Command) => {
+const handleCommandWithoutArgs = (command: Command): string => {
   switch (command) {
     case Command.MOVE:
-      console.log('MOVE');
-      break;
+      return 'MOVE';
     case Command.LEFT:
-      console.log('LEFT');
-      break;
+      return 'LEFT';
     case Command.RIGHT:
-      console.log('RIGHT');
-      break;
+      return 'RIGHT';
     case Command.REPORT:
-      console.log('REPORT');
-      break;
+      try {
+        return TOY_ROBOT.report();
+      } catch (error) {
+        return (error as Error).message;
+      }
+
     default:
       // check if the command required argument(s)
       if (CommandsWithArgs.includes(command)) {
-        console.log('this command requires argument(s)');
+        return 'this command requires argument(s)';
       } else {
-        console.log('invalid command');
+        return 'invalid command';
       }
   }
 };
 
-const handleCommandWithArgs = (command: Command, args: Array<string>) => {
+const handleCommandWithArgs = (
+  command: Command,
+  args: Array<string>
+): string => {
   switch (command) {
     case Command.PLACE:
-      console.log('PLACE');
-      console.log('args', args);
-      break;
+      return handlePlaceCommand(args);
     default:
-      console.log('invalid command');
+      return 'invalid command';
   }
 };
