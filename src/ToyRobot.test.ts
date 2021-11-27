@@ -33,7 +33,7 @@ describe('place argument validation', () => {
     const toyRobot = createMockToyRobot();
 
     expect(() => toyRobot.place(x, 0, Direction.NORTH)).toThrowError(
-      `invalid X value: ${x}. X should be between 0 and 4`
+      `Invalid X,Y value: ${x},0. Position should be between 0,0 and 4,4`
     );
   });
 
@@ -41,7 +41,7 @@ describe('place argument validation', () => {
     const toyRobot = createMockToyRobot();
 
     expect(() => toyRobot.place(0, y, Direction.NORTH)).toThrowError(
-      `invalid Y value: ${y}. Y should be between 0 and 4`
+      `Invalid X,Y value: 0,${y}. Position should be between 0,0 and 4,4`
     );
   });
 });

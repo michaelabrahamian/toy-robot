@@ -1,12 +1,9 @@
 import { Direction } from './types/Direction';
 import { Position } from './types/Position';
 import { validateDirection } from './validation/validateDirection';
-import {
-  MAX_VALUES,
-  MIN_VALUES,
-  validateWithinBounds,
-} from './validation/validateWithinBounds';
+import { MAX_VALUES, MIN_VALUES, isWithinBounds } from './validation/bounds';
 
+// Maps the current direction to a new direction when turning left
 const ROTATE_LEFT_MAPPING: Record<Direction, Direction> = {
   [Direction.NORTH]: Direction.WEST,
   [Direction.EAST]: Direction.NORTH,
@@ -14,6 +11,7 @@ const ROTATE_LEFT_MAPPING: Record<Direction, Direction> = {
   [Direction.WEST]: Direction.SOUTH,
 };
 
+// Maps the current direction to a new direction when turning right
 const ROTATE_RIGHT_MAPPING: Record<Direction, Direction> = {
   [Direction.NORTH]: Direction.EAST,
   [Direction.EAST]: Direction.SOUTH,
@@ -49,7 +47,11 @@ export class ToyRobot {
   place(x: number, y: number, direction: Direction): void {
     validateDirection(direction);
 
-    validateWithinBounds(x, y);
+    if (!isWithinBounds(x, y)) {
+      throw new Error(
+        `Invalid X,Y value: ${x},${y}. Position should be between ${MIN_VALUES.X},${MIN_VALUES.Y} and ${MAX_VALUES.X},${MAX_VALUES.Y}`
+      );
+    }
 
     this.position.x = x;
     this.position.y = y;
@@ -78,19 +80,14 @@ export class ToyRobot {
     const newX = this.position.x + movementToApply.x;
     const newY = this.position.y + movementToApply.y;
 
-    if (
-      newX < MIN_VALUES.X ||
-      newX > MAX_VALUES.X ||
-      newY < MIN_VALUES.Y ||
-      newY > MAX_VALUES.X
-    ) {
+    if (!isWithinBounds(newX, newY)) {
       throw new Error(
         'moving in the current direction would push the robot off the table!'
       );
     }
 
-    this.position.x += movementToApply.x;
-    this.position.y += movementToApply.y;
+    this.position.x = newX;
+    this.position.y = newY;
   }
 
   validateIfPlaced(): void {
