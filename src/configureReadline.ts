@@ -4,9 +4,11 @@ import { handleInput } from './input/handleInput';
 export const configureReadline = (readline: ReadlineInterface): void => {
   readline.setPrompt('Enter command > ');
 
-  // set input listener
+  // Set input listener, waiting for user to click enter
   readline.on('line', (input: string) => {
     console.log(handleInput(input));
+
+    // Listen to the next submitted line
     readline.prompt();
   });
 
