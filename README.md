@@ -6,6 +6,7 @@ A console application that simulates a toy robot moving on a 5x5 square table to
 
 ## Steps to run:
 
+1. `npm install`
 1. `npm start`
 
 ## Available commands
@@ -15,3 +16,8 @@ A console application that simulates a toy robot moving on a 5x5 square table to
 - `LEFT`: rotates the toy robot 90 degrees to the left
 - `RIGHT`: rotates the toy robot 90 degrees to the right
 - `REPORT`: displays the X, Y, and F (direction) of the toy robot.
+
+## Architecture Overview
+
+- TypeScript
+- Prettier & eslint for code consistency & cleanliness
