@@ -82,7 +82,7 @@ export class ToyRobot {
 
     if (!isWithinBounds(newX, newY)) {
       throw new Error(
-        'moving in the current direction would push the robot off the table!'
+        'Moving in the current direction would push the robot off the table!'
       );
     }
 
@@ -92,7 +92,7 @@ export class ToyRobot {
 
   validateIfPlaced(): void {
     if (!this.hasBeenPlaced) {
-      throw new Error('toy robot has not been placed yet');
+      throw new Error('Toy Robot has not been placed yet');
     }
   }
 }

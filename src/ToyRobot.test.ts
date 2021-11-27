@@ -8,7 +8,7 @@ test('should throw an error when trying to report before being placed', () => {
   const toyRobot = createMockToyRobot();
 
   expect(() => toyRobot.report()).toThrowError(
-    'toy robot has not been placed yet'
+    'Toy Robot has not been placed yet'
   );
 });
 
@@ -95,7 +95,7 @@ describe('rotate left', () => {
     const toyRobot = createMockToyRobot();
 
     expect(() => toyRobot.rotateLeft()).toThrowError(
-      'toy robot has not been placed yet'
+      'Toy Robot has not been placed yet'
     );
   });
 });
@@ -123,7 +123,7 @@ describe('rotate right', () => {
     const toyRobot = createMockToyRobot();
 
     expect(() => toyRobot.rotateRight()).toThrowError(
-      'toy robot has not been placed yet'
+      'Toy Robot has not been placed yet'
     );
   });
 });
@@ -133,7 +133,7 @@ describe('move', () => {
     const toyRobot = createMockToyRobot();
 
     expect(() => toyRobot.move()).toThrowError(
-      'toy robot has not been placed yet'
+      'Toy Robot has not been placed yet'
     );
   });
 
@@ -219,7 +219,7 @@ describe('move', () => {
       expectedNewPosition: { x: 0, y: 1 },
     },
   ])(
-    'moving $currentDirection from $currentPosition.x,$currentPosition.y should result in position $expectedNewPosition.x,$expectedNewPosition.y',
+    'Moving $currentDirection from $currentPosition.x,$currentPosition.y should result in position $expectedNewPosition.x,$expectedNewPosition.y',
     ({
       currentPosition,
       currentDirection,
@@ -291,7 +291,7 @@ describe('move', () => {
       toyRobot.place(currentPosition.x, currentPosition.y, currentDirection);
 
       expect(() => toyRobot.move()).toThrowError(
-        'moving in the current direction would push the robot off the table!'
+        'Moving in the current direction would push the robot off the table!'
       );
     }
   );
