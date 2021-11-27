@@ -1,4 +1,4 @@
-import { configureReadline } from './src/configureReadline';
+import { configureInputListener } from './src/configureInputListener';
 import readline from 'readline';
 
 const rl = readline.createInterface({
@@ -21,4 +21,5 @@ const startupMenu = [
 // Log out each line of initial menu
 console.log(startupMenu.join('\r\n'));
 
-configureReadline(rl);
+// Listen to input and handle commands
+configureInputListener(rl);
