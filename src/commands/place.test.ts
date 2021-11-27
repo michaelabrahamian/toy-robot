@@ -23,3 +23,7 @@ describe('extractPlaceArgs', () => {
     }
   );
 });
+
+describe('handlePlaceCommand', () => {
+  test.todo('should not throw an error for valid place args');
+});

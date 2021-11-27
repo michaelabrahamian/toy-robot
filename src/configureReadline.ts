@@ -1,5 +1,5 @@
 import { Interface as ReadlineInterface } from 'readline';
-import { handleInput } from './handleInput';
+import { handleInput } from './input/handleInput';
 
 export const configureReadline = (readline: ReadlineInterface): void => {
   readline.setPrompt('Enter command > ');
