@@ -15,11 +15,11 @@ type PlaceCommandArgs = {
   direction: Direction;
 };
 
-const extractPlaceArgs = (args: Array<string>): PlaceCommandArgs => {
+export const extractPlaceArgs = (args: Array<string>): PlaceCommandArgs => {
   const firstArg = args[0];
 
   if (!firstArg) {
-    throw new Error(`${Command.PLACE} args provided`);
+    throw new Error(`no ${Command.PLACE} args provided`);
   }
 
   const placeArgs = firstArg.split(',');
@@ -31,6 +31,10 @@ const extractPlaceArgs = (args: Array<string>): PlaceCommandArgs => {
   }
 
   const [x, y, direction] = placeArgs;
+
+  if (isNaN(Number(x)) || isNaN(Number(y))) {
+    throw new Error('X and Y should be numeric');
+  }
 
   return {
     x: Number(x),
