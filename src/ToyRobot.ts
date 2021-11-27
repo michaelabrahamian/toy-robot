@@ -41,10 +41,7 @@ export class ToyRobot {
   }
 
   report(): string {
-    // TODO: refactor this check to prevent repetition in all methods
-    if (!this.hasBeenPlaced) {
-      throw new Error('toy robot has not been placed yet');
-    }
+    this.validateIfPlaced();
 
     return `${this.position.x},${this.position.y},${this.direction}`;
   }
@@ -61,25 +58,19 @@ export class ToyRobot {
   }
 
   rotateLeft(): void {
-    if (!this.hasBeenPlaced) {
-      throw new Error('toy robot has not been placed yet');
-    }
+    this.validateIfPlaced();
 
     this.direction = ROTATE_LEFT_MAPPING[this.direction];
   }
 
   rotateRight(): void {
-    if (!this.hasBeenPlaced) {
-      throw new Error('toy robot has not been placed yet');
-    }
+    this.validateIfPlaced();
 
     this.direction = ROTATE_RIGHT_MAPPING[this.direction];
   }
 
   move(): void {
-    if (!this.hasBeenPlaced) {
-      throw new Error('toy robot has not been placed yet');
-    }
+    this.validateIfPlaced();
 
     const movementToApply = MOVE_MAPPING[this.direction];
 
@@ -100,5 +91,11 @@ export class ToyRobot {
 
     this.position.x += movementToApply.x;
     this.position.y += movementToApply.y;
+  }
+
+  validateIfPlaced(): void {
+    if (!this.hasBeenPlaced) {
+      throw new Error('toy robot has not been placed yet');
+    }
   }
 }
