@@ -13,7 +13,7 @@ export const configureReadline = (readline: ReadlineInterface): void => {
   });
 
   readline.on('close', () => {
-    console.log('Toy Robot shutting down...');
+    console.log('\r\nToy Robot shutting down...');
     process.exit();
   });
 
