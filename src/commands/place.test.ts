@@ -1,4 +1,4 @@
-import { extractPlaceArgs } from './place';
+import { extractPlaceArgs, handlePlaceCommand } from './place';
 
 describe('extractPlaceArgs', () => {
   test('should throw an error for an empty array', () => {
@@ -25,5 +25,11 @@ describe('extractPlaceArgs', () => {
 });
 
 describe('handlePlaceCommand', () => {
-  test.todo('should not throw an error for valid place args');
+  test('should return the command name and not throw an error for valid place args', () => {
+    expect(handlePlaceCommand(['1,1,NORTH'])).toEqual('PLACE');
+  });
+
+  test('should throw an error for invalid place args', () => {
+    expect(() => handlePlaceCommand(['1,2'])).toThrowError();
+  });
 });
