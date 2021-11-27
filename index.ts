@@ -1,4 +1,5 @@
-const readline = require("readline");
+import { configureReadline } from "./src/configureReadline";
+import readline from "readline";
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -16,17 +17,4 @@ console.log("- LEFT");
 console.log("- RIGHT");
 console.log("- REPORT");
 
-// set input listener
-rl.on("line", (cmd) => {
-  console.log("Running " + cmd);
-  rl.prompt();
-});
-
-rl.on("close", () => {
-  console.log("Toy Robot shutting down...");
-  process.exit();
-});
-
-rl.setPrompt("Enter command > ");
-
-rl.prompt();
+configureReadline(rl);
