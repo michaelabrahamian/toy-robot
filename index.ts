@@ -19,6 +19,6 @@ const startupMenu = [
 ];
 
 // Log out each line of initial menu
-startupMenu.forEach((line) => console.log(line));
+console.log(startupMenu.join('\n'));
 
 configureReadline(rl);
