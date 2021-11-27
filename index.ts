@@ -6,15 +6,19 @@ const rl = readline.createInterface({
   output: process.stdout,
 });
 
-// Display info
-console.log('Toy Robot booting up...');
-console.log('Available commands:');
-console.log('- PLACE X,Y,F');
-console.log('    - X and Y are the new coordinates');
-console.log('    - F is the new direction to face');
-console.log('- MOVE');
-console.log('- LEFT');
-console.log('- RIGHT');
-console.log('- REPORT');
+const startupMenu = [
+  'Toy Robot booting up...',
+  'Available commands:',
+  '- PLACE X,Y,F',
+  '    - X and Y are the new coordinates',
+  '    - F is the new direction to face',
+  '- MOVE',
+  '- LEFT',
+  '- RIGHT',
+  '- REPORT',
+];
+
+// Log out each line of initial menu
+startupMenu.forEach((line) => console.log(line));
 
 configureReadline(rl);
