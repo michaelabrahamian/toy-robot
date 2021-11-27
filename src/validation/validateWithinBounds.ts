@@ -1,9 +1,9 @@
-const MIN_VALUES = {
+export const MIN_VALUES = {
   X: 0,
   Y: 0,
 };
 
-const MAX_VALUES = {
+export const MAX_VALUES = {
   X: 4,
   Y: 4,
 };

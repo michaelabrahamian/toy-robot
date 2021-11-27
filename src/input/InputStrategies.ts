@@ -7,7 +7,10 @@ import { CommandHandler } from '../types/CommandHandler';
 export const COMMAND_HANDLERS: Record<Command, CommandHandler> = {
   [Command.PLACE]: handlePlaceCommand,
   [Command.REPORT]: () => TOY_ROBOT.report(),
-  [Command.MOVE]: () => 'MOVE',
+  [Command.MOVE]: () => {
+    TOY_ROBOT.move();
+    return 'MOVE';
+  },
   [Command.LEFT]: () => {
     TOY_ROBOT.rotateLeft();
     return 'LEFT';
