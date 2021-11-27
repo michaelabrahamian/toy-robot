@@ -1,11 +1,12 @@
 import { Interface as ReadlineInterface } from 'readline';
+import { handleInput } from './handleInput';
 
-export const configureReadline = (readline: ReadlineInterface) => {
+export const configureReadline = (readline: ReadlineInterface): void => {
   readline.setPrompt('Enter command > ');
 
   // set input listener
-  readline.on('line', (cmd: string) => {
-    console.log('Running ' + cmd);
+  readline.on('line', (input: string) => {
+    handleInput(input);
     readline.prompt();
   });
 
