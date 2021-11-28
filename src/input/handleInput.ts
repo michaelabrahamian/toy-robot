@@ -2,8 +2,13 @@ import { cleanInput } from '../utils/cleanInput';
 import { Command } from '../types/Command';
 import { validateCommand } from '../validation/validateCommand';
 import { COMMAND_HANDLERS } from './InputStrategies';
+import { ToyRobot } from '../ToyRobot';
+import { InputHandler } from '../types/InputHandler';
 
-export const handleInput = (input: string): string => {
+export const handleInput: InputHandler = (
+  input: string,
+  toyRobot: ToyRobot
+): string => {
   const parsedInput = cleanInput(input);
 
   const inputArray = parsedInput.split(' ');
@@ -19,7 +24,7 @@ export const handleInput = (input: string): string => {
       throw new Error('unknown command');
     }
 
-    return commandHandler(commandArgs);
+    return commandHandler(toyRobot, commandArgs);
   } catch (error) {
     return (error as Error).message;
   }

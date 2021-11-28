@@ -1,5 +1,7 @@
 import { configureInputListener } from './src/configureInputListener';
 import readline from 'readline';
+import { ToyRobot } from './src/ToyRobot';
+import { handleInput } from './src/input/handleInput';
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -21,5 +23,7 @@ const startupMenu = [
 // Log out each line of initial menu
 console.log(startupMenu.join('\r\n'));
 
+const toyRobot = new ToyRobot();
+
 // Listen to input and handle commands
-configureInputListener(rl);
+configureInputListener(rl, handleInput, toyRobot);

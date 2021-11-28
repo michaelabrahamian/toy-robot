@@ -2,7 +2,7 @@ import { ToyRobot } from './ToyRobot';
 import { Direction } from './types/Direction';
 import { Position } from './types/Position';
 
-const createMockToyRobot = () => new ToyRobot(0, 0, Direction.NORTH);
+const createMockToyRobot = () => new ToyRobot();
 
 test('should throw an error when trying to report before being placed', () => {
   const toyRobot = createMockToyRobot();

@@ -32,9 +32,14 @@ export class ToyRobot {
   direction: Direction;
   hasBeenPlaced: boolean;
 
-  constructor(x: number, y: number, direction: Direction) {
-    this.position = { x, y };
-    this.direction = direction;
+  // initialises the Toy Robot with the default state. Doesn't take arguments as the initial
+  // position and direction are provided when the robot is first placed.
+  constructor() {
+    this.position = {
+      x: 0,
+      y: 0,
+    };
+    this.direction = Direction.NORTH;
     this.hasBeenPlaced = false;
   }
 

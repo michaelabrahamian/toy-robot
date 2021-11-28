@@ -1,4 +1,7 @@
+import { ToyRobot } from '../ToyRobot';
 import { extractPlaceArgs, handlePlaceCommand } from './place';
+
+const createMockToyRobot = () => new ToyRobot();
 
 describe('extractPlaceArgs', () => {
   test('should throw an error for an empty array', () => {
@@ -26,10 +29,14 @@ describe('extractPlaceArgs', () => {
 
 describe('handlePlaceCommand', () => {
   test('should return the command name and not throw an error for valid place args', () => {
-    expect(handlePlaceCommand(['1,1,NORTH'])).toEqual('PLACE');
+    expect(handlePlaceCommand(createMockToyRobot(), ['1,1,NORTH'])).toEqual(
+      'PLACE'
+    );
   });
 
   test('should throw an error for invalid place args', () => {
-    expect(() => handlePlaceCommand(['1,2'])).toThrowError();
+    expect(() =>
+      handlePlaceCommand(createMockToyRobot(), ['1,2'])
+    ).toThrowError();
   });
 });

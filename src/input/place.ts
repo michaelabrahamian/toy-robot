@@ -1,11 +1,15 @@
-import { TOY_ROBOT } from '../singleton';
+import { ToyRobot } from '../ToyRobot';
 import { Command } from '../types/Command';
+import { CommandHandler } from '../types/CommandHandler';
 import { Direction } from '../types/Direction';
 
-export const handlePlaceCommand = (args: Array<string>): string => {
+export const handlePlaceCommand: CommandHandler = (
+  toyRobot: ToyRobot,
+  args: Array<string>
+): string => {
   const { x, y, direction } = extractPlaceArgs(args);
 
-  TOY_ROBOT.place(x, y, direction);
+  toyRobot.place(x, y, direction);
   return 'PLACE';
 };
 
