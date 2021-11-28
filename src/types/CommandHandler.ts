@@ -1,10 +1,6 @@
 import { ToyRobot } from '../ToyRobot';
 
-export type CommandHandler = CommandWithNoArgsHandler | CommandWithArgsHandler;
-
-type CommandWithNoArgsHandler = (toyRobot: ToyRobot) => string;
-
-type CommandWithArgsHandler = (
+export type CommandHandler = (
   toyRobot: ToyRobot,
-  args: Array<string>
+  args?: Array<string>
 ) => string;

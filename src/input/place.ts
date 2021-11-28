@@ -5,7 +5,7 @@ import { Direction } from '../types/Direction';
 
 export const handlePlaceCommand: CommandHandler = (
   toyRobot: ToyRobot,
-  args: Array<string>
+  args?: Array<string>
 ): string => {
   const { x, y, direction } = extractPlaceArgs(args);
 
@@ -19,13 +19,12 @@ type PlaceCommandArgs = {
   direction: Direction;
 };
 
-export const extractPlaceArgs = (args: Array<string>): PlaceCommandArgs => {
-  const firstArg = args[0];
-
-  if (!firstArg) {
+export const extractPlaceArgs = (args?: Array<string>): PlaceCommandArgs => {
+  if (!args || !args.length) {
     throw new Error(`no ${Command.PLACE} args provided`);
   }
 
+  const firstArg = args[0];
   const placeArgs = firstArg.split(',');
 
   if (placeArgs.length !== 3) {
