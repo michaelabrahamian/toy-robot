@@ -2,7 +2,8 @@
 
 A console application that simulates a toy robot moving on a 5x5 square table top.
 
-- The origin `(0,0)` is the SOUTH WEST most corner.
+- The origin (`0,0`) is the SOUTH WEST most corner.
+- The NORTH EAST corner is `4,4`.
 
 ## Steps to run:
 
