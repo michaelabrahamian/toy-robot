@@ -4,8 +4,9 @@
   "description": "toy robot challenge",
   "main": "index.ts",
   "scripts": {
-    "test": "jest",
     "start": "ts-node index.ts",
+    "test": "jest",
+    "test:coverage": "jest --coverage",
     "lint": "eslint index.ts src/**/*.ts"
   },
   "repository": {
